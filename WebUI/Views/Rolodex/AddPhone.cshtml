@@ -1,0 +1,34 @@
+﻿@model WebUI.Models.PhoneNumberViewModel
+
+@{
+    ViewData["Title"] = "AddPhone";
+}
+
+<h1>AddPhone</h1>
+
+<h4>PhoneNumberViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddPhone">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Number" class="control-label"></label>
+                <input asp-for="Number" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="PersonId" />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Contacts">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,51 @@
+﻿@model WebUI.Models.PhysicalAddressViewModel
+
+@{
+    ViewData["Title"] = "AddAddress";
+}
+
+<h1>AddAddress</h1>
+
+<h4>PhysicalAddressViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddAddress">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="StreetAddress" class="form-control" type="text" placeholder="Street Address" id="floatingStreetAddress"/>
+                <label asp-for="StreetAddress" id="floatingStreetAddress"></label>
+                <span asp-validation-for="StreetAddress" class="text-danger"></span>
+            </div>
+            <div class="input-group mb-3">
+                <span class="form-floating mb-3">
+                    <input asp-for="City" class="form-control" type="text" placeholder="City" id="floatingCity" />
+                    <label asp-for="City" id="floatingCity"></label>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </span>
+                <span class="form-floating mb-3">
+                    <input asp-for="Region" class="form-control" type="text" placeholder="State" id="floatingRegion"/>
+                    <label asp-for="Region" id="floatingRegion"></label>
+                    <span asp-validation-for="Region" class="text-danger"></span>
+                </span>
+                <span class="form-floating mb-3">
+                    <input asp-for="PostalCode" class="form-control" type="text" placeholder="Zip Code" id="floatingPostalCode"/>
+                    <label asp-for="PostalCode" id="floatingPostalCode"></label>
+                    <span asp-validation-for="PostalCode" class="text-danger"></span>
+                </span>
+            </div>
+            <input type="hidden" asp-for="PersonId" />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Contacts">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

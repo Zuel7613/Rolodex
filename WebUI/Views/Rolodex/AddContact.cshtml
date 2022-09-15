@@ -1,0 +1,78 @@
+﻿@model WebUI.Models.PersonViewModel
+
+@{
+    ViewData["Title"] = "AddContact";
+}
+
+<h1>AddContact</h1>
+
+<h4>Person</h4>
+<hr />
+<div class="row">
+    <form asp-action="AddContact">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-floating mb-3">
+            <input asp-for="FirstName" class="form-control" id="floatingFirstName" placeholder="First Name" />
+            <label asp-for="FirstName" class="control-label" for="floatingFirstName"></label>
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-floating mb-3">
+            <input asp-for="LastName" class="form-control" id="floatingLastName" placeholder= "Last Name" />
+            <label asp-for="LastName" class="control-label" for="floatingLastName"></label>
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div>
+            @for (var i = 0; i < Model.PhysicalAddresses.Count ; i++)
+            {
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" placeholder="Street Address" id="floatingStreetAddress-@i" asp-for="PhysicalAddresses[i].StreetAddress" />
+                    <label for="floatingStreetAddress-@i">StreetAddress</label>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="form-floating">
+                        <input class="form-control" type="text" placeholder="City" id="floatingCity-@i" asp-for="PhysicalAddresses[i].City" />
+                        <label for="floatingCity-@i">City</label>
+                    </span>
+                    <span class="form-floating">
+                        <input class="form-control" type="text" placeholder="State" id="floatingRegion-@i" asp-for="PhysicalAddresses[i].Region" />
+                        <label for="floatingRegion-@i">State</label>
+                    </span>
+                    <span class="form-floating">
+                        <input class="form-control" type="text" placeholder="Zip Code" id="floatingPostalCode-@i" asp-for="PhysicalAddresses[i].PostalCode" />
+                        <label for="floatingPostalCode-@i">Zip Code</label>
+                    </span>
+                </div>
+            }
+        </div>
+        <div>
+            @for (var i = 0; i < Model.EmailAddresses.Count; i++)
+            {
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" placeholder="Email" id="floatingEmail-@i" asp-for="EmailAddresses[i].Email" />
+                    <label for="floatingEmail-@i">Email</label>
+                </div>
+            }
+        </div>
+        <div>
+            @for (var i = 0; i < Model.PhoneNumbers.Count; i++)
+            {
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" placeholder="Phone Number" id="floatingNumber-@i" asp-for="PhoneNumbers[i].Number" />
+                    <label for="floatingNumber-@i">Phone Number</label>
+                </div>
+            }
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Contacts">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
